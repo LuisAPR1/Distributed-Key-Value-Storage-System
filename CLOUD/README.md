@@ -1,62 +1,62 @@
-# Plano de Implementação na Cloud
+# Cloud Implementation Plan
 
-## 1. Avaliação da Arquitetura Atual
+## 1. Current Architecture Assessment
 
-O sistema distribuído de armazenamento chave-valor é composto por:
-- API REST baseada em FastAPI
-- Load balancer com Nginx
-- Cache distribuído com Redis e Sentinel
-- Armazenamento persistente com CockroachDB
-- Sistema de mensageria com RabbitMQ
-- Monitoramento com Prometheus/Grafana
-- Autoscaler para escalabilidade
+The distributed key-value storage system consists of:
+- REST API based on FastAPI
+- Load balancer with Nginx
+- Distributed cache with Redis and Sentinel
+- Persistent storage with CockroachDB
+- Messaging system with RabbitMQ
+- Monitoring with Prometheus/Grafana
+- Autoscaler for scalability
 
-## 2. Escolha da Plataforma Cloud
+## 2. Cloud Platform Selection
 
-Recomendamos a implementação em um dos seguintes provedores:
+We recommend implementation on one of the following providers:
 - AWS (Amazon Web Services)
 - Microsoft Azure
 - Google Cloud Platform (GCP)
 
-### Comparação de Serviços
+### Service Comparison
 
-| Componente | AWS | Azure | GCP |
-|------------|-----|-------|-----|
+| Component | AWS | Azure | GCP |
+|-----------|-----|-------|-----|
 | Containers | EKS/ECS | AKS | GKE |
 | Redis | ElastiCache | Azure Cache | Memorystore |
 | PostgreSQL/CockroachDB | RDS/Aurora | Azure Database | Cloud SQL |
 | RabbitMQ | Amazon MQ | Service Bus | Pub/Sub |
 | Load Balancer | ELB/ALB | Azure LB | Cloud LB |
-| Monitoramento | CloudWatch | Azure Monitor | Cloud Monitoring |
+| Monitoring | CloudWatch | Azure Monitor | Cloud Monitoring |
 | Autoscaling | EC2 Auto Scaling | VM Scale Sets | Instance Groups |
 
-## 3. Estratégia de Migração
+## 3. Migration Strategy
 
-### Fase 1: Preparação (2 semanas)
-- Adaptação do código para configurações baseadas em variáveis de ambiente
-- Criação de Terraform/CloudFormation para provisionamento da infraestrutura
-- Dockerização de todos os componentes (já realizada)
-- Atualização das configurações para uso em ambiente cloud
+### Phase 1: Preparation (2 weeks)
+- Code adaptation for environment variable-based configurations
+- Create Terraform/CloudFormation for infrastructure provisioning
+- Dockerization of all components (already completed)
+- Update configurations for cloud environment use
 
-### Fase 2: Implementação Base (3 semanas)
-- Provisionamento da infraestrutura básica (VPC, Security Groups, IAM)
-- Implantação do cluster Kubernetes (EKS/AKS/GKE)
-- Configuração de serviços gerenciados (Redis, DB, Message Queue)
-- Configuração do sistema de monitoramento na cloud
+### Phase 2: Base Implementation (3 weeks)
+- Provision basic infrastructure (VPC, Security Groups, IAM)
+- Deploy Kubernetes cluster (EKS/AKS/GKE)
+- Configure managed services (Redis, DB, Message Queue)
+- Set up cloud monitoring system
 
-### Fase 3: Migração e Teste (2 semanas)
-- Migração de dados para o ambiente cloud
-- Testes de carga no novo ambiente
-- Validação de funcionalidades e performance
-- Implementação de backup e disaster recovery
+### Phase 3: Migration and Testing (2 weeks)
+- Migrate data to cloud environment
+- Perform load tests in new environment
+- Validate functionality and performance
+- Implement backup and disaster recovery
 
-### Fase 4: Otimização e Produção (1 semana)
-- Otimização de custos e recursos
-- Implementação de auto-scaling baseado em demanda
-- Configuração de CDN para conteúdo estático
-- Go-live e monitoramento intensivo
+### Phase 4: Optimization and Production (1 week)
+- Optimize costs and resources
+- Implement demand-based auto-scaling
+- Configure CDN for static content
+- Go-live and intensive monitoring
 
-## 4. Arquitetura Proposta na AWS
+## 4. Proposed AWS Architecture
 
 ```
                                     Route 53 (DNS)
@@ -78,45 +78,45 @@ Recomendamos a implementação em um dos seguintes provedores:
    (Redis)                    (RabbitMQ)           (CockroachDB)
 ```
 
-## 5. Considerações de Segurança e Compliance
+## 5. Security and Compliance Considerations
 
-- Implementação de VPC e subnets privadas
-- Uso de AWS WAF para proteção contra ataques
-- Implementação de criptografia em trânsito e em repouso
-- Controle de acesso baseado em IAM/RBAC
-- Logging e auditoria com CloudTrail/CloudWatch
-- Backup automático e políticas de retenção
+- VPC and private subnets implementation
+- AWS WAF for attack protection
+- Encryption in transit and at rest
+- IAM/RBAC-based access control
+- Logging and auditing with CloudTrail/CloudWatch
+- Automatic backup and retention policies
 
-## 6. Estimativa de Custos
+## 6. Cost Estimation
 
-Baseado no tráfego médio de 2000 req/s para leitura e 500 req/s para escrita:
+Based on average traffic of 2000 req/s for reads and 500 req/s for writes:
 
-| Serviço | Especificação | Custo Mensal Estimado (USD) |
-|---------|---------------|-------------------|
-| EKS | Cluster com 3 nós m5.large | $300 |
-| ElastiCache | 3 nós cache.m5.large | $400 |
-| Aurora | db.r5.large com 100GB | $350 |
+| Service | Specification | Estimated Monthly Cost (USD) |
+|---------|---------------|---------------------|
+| EKS | 3-node cluster with m5.large | $300 |
+| ElastiCache | 3 cache.m5.large nodes | $400 |
+| Aurora | db.r5.large with 100GB | $350 |
 | Amazon MQ | mq.m5.large | $200 |
-| ALB | Tráfego de 5TB/mês | $250 |
-| CloudWatch | Monitoramento básico | $100 |
-| S3/Backup | 500GB de armazenamento | $50 |
-| **Total** | | **$1,650/mês** |
+| ALB | 5TB/month traffic | $250 |
+| CloudWatch | Basic monitoring | $100 |
+| S3/Backup | 500GB storage | $50 |
+| **Total** | | **$1,650/month** |
 
-## 7. Vantagens da Migração para Cloud
+## 7. Benefits of Cloud Migration
 
-- Escalabilidade automática baseada em demanda
-- Alta disponibilidade com Multi-AZ
-- Redução de custos operacionais (pay-as-you-go)
-- Serviços gerenciados para Redis, Database e Message Queue
-- Disaster recovery simplificado
-- Atualizações e patches automatizados
-- Monitoramento e alertas integrados
+- Demand-based automatic scalability
+- Multi-AZ high availability
+- Reduced operational costs (pay-as-you-go)
+- Managed services for Redis, Database, and Message Queue
+- Simplified disaster recovery
+- Automated updates and patches
+- Integrated monitoring and alerts
 
-## 8. Próximos Passos
+## 8. Next Steps
 
-1. Aprovação do plano de implementação
-2. Formação da equipe de migração
-3. Criação dos scripts de infraestrutura como código (IaC)
-4. Implementação do ambiente de staging
-5. Testes e validação
-6. Migração para produção 
+1. Approve implementation plan
+2. Form migration team
+3. Create Infrastructure as Code (IaC) scripts
+4. Implement staging environment
+5. Testing and validation
+6. Production migration

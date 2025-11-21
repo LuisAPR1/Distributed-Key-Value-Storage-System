@@ -1,29 +1,29 @@
 # Consumer / Worker
 
-Este diretório contém o serviço de consumidor que processa operações assíncronas de forma distribuída.
+This directory contains the consumer service that processes asynchronous operations in a distributed manner.
 
-## Estrutura
+## Structure
 
-- `worker.py`: Implementação do consumidor RabbitMQ
-- `metrics.py`: Instrumentação para métricas
-- `Dockerfile`: Configuração para containerização
-- `requirements.txt`: Dependências do serviço
+- `worker.py`: RabbitMQ consumer implementation
+- `metrics.py`: Metrics instrumentation
+- `Dockerfile`: Containerization configuration
+- `requirements.txt`: Service dependencies
 
-## Funcionalidades
+## Features
 
-- Consumo de mensagens de operações PUT e DELETE da fila
-- Processamento assíncrono para melhorar performance do sistema
-- Persistência dos dados no armazenamento backend
-- Invalidação do cache quando necessário
-- Resiliência a falhas com reconhecimento de mensagens
+- Consumption of PUT and DELETE operation messages from the queue
+- Asynchronous processing to improve system performance
+- Data persistence to backend storage
+- Cache invalidation when necessary
+- Failure resilience with message acknowledgment
 
-## Como Funciona
+## How It Works
 
-O consumer escuta filas no RabbitMQ para operações que exigem persistência. Quando uma mensagem é recebida:
+The consumer listens to RabbitMQ queues for operations requiring persistence. When a message is received:
 
-1. A mensagem é desserializada
-2. A operação é executada no backend de armazenamento (CockroachDB)
-3. O cache é invalidado se necessário
-4. A mensagem é confirmada (ack) somente após processamento bem-sucedido
+1. The message is deserialized
+2. The operation is executed on the storage backend (CockroachDB)
+3. The cache is invalidated if necessary
+4. The message is acknowledged (ack) only after successful processing
 
-Em caso de falha, as mensagens são reenfileiradas automaticamente pelo RabbitMQ. 
+In case of failure, messages are automatically re-queued by RabbitMQ.

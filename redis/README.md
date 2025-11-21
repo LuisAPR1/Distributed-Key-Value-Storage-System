@@ -1,37 +1,37 @@
 # Redis
 
-Este diretório contém configurações e scripts relacionados ao Redis, utilizado como sistema de cache no projeto.
+This directory contains configurations and scripts related to Redis, used as the caching system in the project.
 
-## Configuração
+## Configuration
 
-O Redis é implementado como um cluster com:
-- 1 nó master
-- 2 nós slave (réplicas de leitura)
-- 3 nós sentinel (monitoramento e failover automático)
+Redis is implemented as a cluster with:
+- 1 master node
+- 2 slave nodes (read replicas)
+- 3 sentinel nodes (monitoring and automatic failover)
 
-## Funcionalidades
+## Features
 
-- **Cache de Dados**: Armazenamento temporário de valores frequentemente acessados
-- **Alta Disponibilidade**: Sentinel para detecção de falhas e failover automático
-- **Replicação**: Réplicas para distribuição de carga de leitura
-- **TTL**: Tempo de vida configurável para chaves
-- **Métricas**: Estatísticas de uso e performance
+- **Data Caching**: Temporary storage of frequently accessed values
+- **High Availability**: Sentinel for failure detection and automatic failover
+- **Replication**: Replicas for read load distribution
+- **TTL**: Configurable time-to-live for keys
+- **Metrics**: Usage and performance statistics
 
-## Políticas e Limites
+## Policies and Limits
 
-- **Política de Expiração**: allkeys-lru (Least Recently Used)
-- **Limite de Memória**: 100MB por instância
-- **Tempo de Cache**: 5 minutos (configurável)
+- **Expiration Policy**: allkeys-lru (Least Recently Used)
+- **Memory Limit**: 100MB per instance
+- **Cache Time**: 5 minutes (configurable)
 
-## Como Funciona
+## How It Works
 
-1. Quando um GET é solicitado, o sistema primeiro verifica o cache Redis
-2. Se encontrado (cache hit), o valor é retornado imediatamente
-3. Se não encontrado (cache miss), o valor é buscado do banco de dados e armazenado no cache
-4. Quando um PUT/DELETE é processado, o cache é invalidado para manter consistência
+1. When a GET is requested, the system first checks the Redis cache
+2. If found (cache hit), the value is returned immediately
+3. If not found (cache miss), the value is fetched from the database and stored in cache
+4. When a PUT/DELETE is processed, the cache is invalidated to maintain consistency
 
-## Persistência
+## Persistence
 
-O Redis no projeto é configurado sem persistência em disco, funcionando puramente como cache.
-Os volumes Docker mapeados servem apenas para garantir que configurações sejam preservadas
-entre reinicializações. 
+Redis in this project is configured without disk persistence, functioning purely as a cache.
+The mapped Docker volumes serve only to ensure that configurations are preserved
+between restarts.

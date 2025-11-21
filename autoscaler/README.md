@@ -1,36 +1,36 @@
 # Autoscaler
 
-Este diretório contém o serviço responsável por escalar automaticamente os componentes do sistema com base na carga.
+This directory contains the service responsible for automatically scaling system components based on load.
 
-## Estrutura
+## Structure
 
-- `autoscaler.py`: Implementação principal do autoscaler
-- `Dockerfile`: Configuração para containerização
-- `requirements.txt`: Dependências do serviço
+- `autoscaler.py`: Main autoscaler implementation
+- `Dockerfile`: Containerization configuration
+- `requirements.txt`: Service dependencies
 
-## Funcionalidades
+## Features
 
-- Monitoramento de métricas de carga do sistema via Prometheus
-- Escalabilidade automática de serviços API e consumers
-- Ajuste dinâmico de réplicas baseado no uso de recursos
-- Prevenção de oscilações com cooldown periods
-- Limite máximo e mínimo de instâncias configurável
+- System load metrics monitoring via Prometheus
+- Automatic scaling of API and consumer services
+- Dynamic replica adjustment based on resource usage
+- Oscillation prevention with cooldown periods
+- Configurable maximum and minimum instance limits
 
-## Como Funciona
+## How It Works
 
-O autoscaler opera em ciclos periódicos:
+The autoscaler operates in periodic cycles:
 
-1. Consulta métricas do Prometheus (latência, CPU, memória, tamanho de filas)
-2. Aplica algoritmos de decisão para determinar o número ótimo de réplicas
-3. Interage com a API do Docker para escalar serviços up/down
-4. Registra decisões de escalabilidade para análise posterior
+1. Queries Prometheus metrics (latency, CPU, memory, queue size)
+2. Applies decision algorithms to determine optimal number of replicas
+3. Interacts with Docker API to scale services up/down
+4. Logs scaling decisions for later analysis
 
-## Configuração
+## Configuration
 
-O comportamento do autoscaler pode ser ajustado via variáveis de ambiente:
+Autoscaler behavior can be adjusted via environment variables:
 
-- `SCALE_INTERVAL`: Intervalo entre decisões de escalabilidade (segundos)
-- `MIN_REPLICAS`: Número mínimo de réplicas por serviço
-- `MAX_REPLICAS`: Número máximo de réplicas por serviço
-- `SCALE_UP_THRESHOLD`: Limite para decisão de escalar para cima
-- `SCALE_DOWN_THRESHOLD`: Limite para decisão de escalar para baixo 
+- `SCALE_INTERVAL`: Interval between scaling decisions (seconds)
+- `MIN_REPLICAS`: Minimum number of replicas per service
+- `MAX_REPLICAS`: Maximum number of replicas per service
+- `SCALE_UP_THRESHOLD`: Threshold for scaling up decision
+- `SCALE_DOWN_THRESHOLD`: Threshold for scaling down decision

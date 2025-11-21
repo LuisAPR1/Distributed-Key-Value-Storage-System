@@ -1,43 +1,43 @@
 # Prometheus
 
-Este diretório contém configurações para o Prometheus, sistema de monitoramento e alerta utilizado no projeto.
+This directory contains configurations for Prometheus, the monitoring and alerting system used in the project.
 
-## Estrutura
+## Structure
 
-- `prometheus.yml`: Configuração principal do Prometheus
-- `alert_rules.yml`: Regras para alertas
-- Outros arquivos de configuração específicos
+- `prometheus.yml`: Main Prometheus configuration
+- `alert_rules.yml`: Alert rules
+- Other specific configuration files
 
-## Funcionalidades
+## Features
 
-- **Coleta de Métricas**: Armazenamento de séries temporais de métricas do sistema
-- **Descoberta de Serviços**: Localização automática de targets para monitoramento
-- **Expressões PromQL**: Linguagem para consulta de métricas
-- **Alertas**: Detecção de condições anômalas no sistema
-- **Integração**: Fonte de dados para o Grafana
+- **Metrics Collection**: Time series storage of system metrics
+- **Service Discovery**: Automatic location of targets for monitoring
+- **PromQL Expressions**: Language for querying metrics
+- **Alerts**: Detection of anomalous conditions in the system
+- **Integration**: Data source for Grafana
 
-## Métricas Coletadas
+## Collected Metrics
 
-- **API**: Latência, taxa de requisições, erros
-- **Cache**: Hits, misses, uso de memória
-- **Banco de Dados**: Operações por segundo, latência, uso de armazenamento
-- **Filas**: Tamanho, taxa de processamento
-- **Recursos de Sistema**: CPU, memória, rede, disco
-- **Custom Metrics**: Métricas específicas da aplicação
+- **API**: Latency, request rate, errors
+- **Cache**: Hits, misses, memory usage
+- **Database**: Operations per second, latency, storage usage
+- **Queues**: Size, processing rate
+- **System Resources**: CPU, memory, network, disk
+- **Custom Metrics**: Application-specific metrics
 
-## Acesso
+## Access
 
 - URL: http://localhost:9091
-- Não requer autenticação por padrão
+- No authentication required by default
 
-## Configuração
+## Configuration
 
-Para modificar os alvos do Prometheus ou adicionar regras de alertas:
+To modify Prometheus targets or add alert rules:
 
-1. Edite o arquivo `prometheus.yml` ou `alert_rules.yml`
-2. Reconstrua o container: `docker compose up -d prometheus`
+1. Edit the `prometheus.yml` or `alert_rules.yml` file
+2. Rebuild the container: `docker compose up -d prometheus`
 
-## Retenção de Dados
+## Data Retention
 
-Por padrão, o Prometheus armazena dados por 15 dias. Esta configuração pode ser ajustada no
-arquivo `prometheus.yml` modificando o parâmetro `storage.tsdb.retention.time`. 
+By default, Prometheus stores data for 15 days. This configuration can be adjusted in
+the `prometheus.yml` file by modifying the `storage.tsdb.retention.time` parameter.

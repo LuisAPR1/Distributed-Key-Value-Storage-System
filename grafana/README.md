@@ -1,45 +1,45 @@
 # Grafana
 
-Este diretório contém configurações e dashboards para o Grafana, a ferramenta de visualização e monitoramento do sistema.
+This directory contains configurations and dashboards for Grafana, the system's visualization and monitoring tool.
 
-## Estrutura
+## Structure
 
-- Dashboards pré-configurados para monitoramento
-- Configuração de datasources (Prometheus)
-- Alertas e notificações
+- Pre-configured dashboards for monitoring
+- Datasource configuration (Prometheus)
+- Alerts and notifications
 
-## Dashboards Disponíveis
+## Available Dashboards
 
-1. **Visão Geral do Sistema**: Métricas gerais e estado dos serviços
-2. **Performance da API**: Latência, throughput e taxa de erros
-3. **Cache Redis**: Taxa de acertos/erros, uso de memória
-4. **CockroachDB**: Métricas do banco de dados, operações por segundo
-5. **RabbitMQ**: Tamanho de filas, taxa de processamento de mensagens
-6. **Recursos do Sistema**: CPU, memória, rede por serviço
+1. **System Overview**: General metrics and service status
+2. **API Performance**: Latency, throughput, and error rate
+3. **Redis Cache**: Hit/miss rate, memory usage
+4. **CockroachDB**: Database metrics, operations per second
+5. **RabbitMQ**: Queue size, message processing rate
+6. **System Resources**: CPU, memory, network per service
 
-## Acesso
+## Access
 
 - URL: http://localhost:3000
-- Credenciais padrão: admin/admin
+- Default credentials: admin/admin
 
-## Configuração
+## Configuration
 
-Os dashboards são provisionados automaticamente durante a inicialização do sistema.
-Para adicionar novos dashboards:
+Dashboards are automatically provisioned during system initialization.
+To add new dashboards:
 
-1. Crie o dashboard via interface do Grafana
-2. Exporte o JSON do dashboard
-3. Adicione o arquivo ao diretório `dashboards/`
-4. Atualize o arquivo `dashboards.yaml` para incluir o novo dashboard
-5. Reconstrua os containers: `docker compose up -d grafana`
+1. Create the dashboard via Grafana interface
+2. Export the dashboard JSON
+3. Add the file to the `dashboards/` directory
+4. Update the `dashboards.yaml` file to include the new dashboard
+5. Rebuild containers: `docker compose up -d grafana`
 
-## Alertas
+## Alerts
 
-O sistema inclui alertas configurados para condições críticas:
+The system includes alerts configured for critical conditions:
 
-- Alta latência na API
-- Erros na API acima do threshold
-- Fila de processamento muito grande
-- Uso de recursos (CPU/memória) acima do limite
+- High API latency
+- API errors above threshold
+- Processing queue too large
+- Resource usage (CPU/memory) above limit
 
-Os alertas podem ser configurados para enviar notificações por email ou outros canais de comunicação. 
+Alerts can be configured to send notifications via email or other communication channels.

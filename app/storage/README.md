@@ -1,52 +1,52 @@
 # Storage Adapters
 
-Este diretório contém os adaptadores de armazenamento para diferentes backends de persistência.
+This directory contains storage adapters for different persistence backends.
 
-## Estrutura
+## Structure
 
-- `__init__.py`: Seletor dinâmico do backend com base na configuração
-- `base.py`: Interface base (classe abstrata) para todos os backends
-- `cockroach_backend.py`: Implementação para CockroachDB
-- `sqlite_backend.py`: Implementação para SQLite (desenvolvimento/testes)
-- `memory.py`: Implementação em memória (desenvolvimento/testes)
+- `__init__.py`: Dynamic backend selector based on configuration
+- `base.py`: Base interface (abstract class) for all backends
+- `cockroach_backend.py`: Implementation for CockroachDB
+- `sqlite_backend.py`: Implementation for SQLite (development/testing)
+- `memory.py`: In-memory implementation (development/testing)
 
 ## Design
 
-O sistema foi projetado com um padrão de adaptador, permitindo:
+The system was designed with an adapter pattern, allowing:
 
-- Mudança de backend sem alterar o código da aplicação
-- Isolamento das complexidades específicas de cada sistema de armazenamento
-- Testes unitários com backends simulados ou em memória
-- Adição fácil de novos backends no futuro
+- Backend changes without modifying application code
+- Isolation of complexities specific to each storage system
+- Unit testing with simulated or in-memory backends
+- Easy addition of new backends in the future
 
-## Backends Disponíveis
+## Available Backends
 
-### CockroachDB (Produção)
-- Persistente e distribuído
-- Alta disponibilidade e tolerância a falhas
-- Transações ACID entre nós
-- Escalabilidade horizontal
+### CockroachDB (Production)
+- Persistent and distributed
+- High availability and fault tolerance
+- ACID transactions across nodes
+- Horizontal scalability
 
-### SQLite (Desenvolvimento)
-- Persistente mas não distribuído
-- Fácil de configurar para desenvolvimento
-- Sem dependências externas
-- Baixa sobrecarga de recursos
+### SQLite (Development)
+- Persistent but not distributed
+- Easy to configure for development
+- No external dependencies
+- Low resource overhead
 
-### Memory (Testes)
-- Não persistente
-- Extremamente rápido
-- Útil para testes unitários
-- Sem configuração necessária
+### Memory (Testing)
+- Not persistent
+- Extremely fast
+- Useful for unit tests
+- No configuration required
 
-## Uso
+## Usage
 
-A seleção do backend é feita por variável de ambiente:
+Backend selection is done via environment variable:
 
 ```bash
-STORAGE_BACKEND=cockroach  # Usa CockroachDB
-STORAGE_BACKEND=sqlite     # Usa SQLite
-STORAGE_BACKEND=memory     # Usa armazenamento em memória
+STORAGE_BACKEND=cockroach  # Use CockroachDB
+STORAGE_BACKEND=sqlite     # Use SQLite
+STORAGE_BACKEND=memory     # Use in-memory storage
 ```
 
-Por padrão, o sistema usa CockroachDB em ambiente de produção. 
+By default, the system uses CockroachDB in production environment.

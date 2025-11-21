@@ -1,52 +1,52 @@
-# Testes de Carga
+# Load Tests
 
-Este diretório contém scripts e ferramentas para realizar testes de carga no sistema distribuído de armazenamento chave-valor.
+This directory contains scripts and tools for performing load tests on the distributed key-value storage system.
 
-## Estrutura
+## Structure
 
-- `load-tests-siege.sh`: Script para executar testes com a ferramenta Siege
-- `README-load-tests.md`: Documentação detalhada sobre testes de carga
+- `load-tests-siege.sh`: Script to run tests with the Siege tool
+- `README-load-tests.md`: Detailed documentation about load tests (deprecated - see main TESTING.md)
 
-## Funcionalidades
+## Features
 
-- Testes de carga para operações PUT, GET e DELETE
-- Simulação de múltiplos usuários concorrentes
-- Métricas de desempenho e disponibilidade
-- Testes configuráveis (número de usuários, duração, etc.)
+- Load tests for PUT, GET, and DELETE operations
+- Simulation of multiple concurrent users
+- Performance and availability metrics
+- Configurable tests (number of users, duration, etc.)
 
-## Como Executar
+## How to Execute
 
 ```bash
-# Executar todos os testes de carga
+# Run all load tests
 ./load-tests-siege.sh all
 
-# Testar apenas uma operação específica
-./load-tests-siege.sh put    # Testar apenas PUT
-./load-tests-siege.sh get    # Testar apenas GET
-./load-tests-siege.sh delete # Testar apenas DELETE
+# Test only a specific operation
+./load-tests-siege.sh put    # Test only PUT
+./load-tests-siege.sh get    # Test only GET
+./load-tests-siege.sh delete # Test only DELETE
 ```
 
-## Configuração
+## Configuration
 
-Os parâmetros dos testes podem ser ajustados editando o script `load-tests-siege.sh`:
+Test parameters can be adjusted by editing the `load-tests-siege.sh` script:
 
-- `NUM_KEYS`: Número de chaves para testar
-- `USERS`: Número de usuários concorrentes
-- `DURATION`: Duração do teste
+- `NUM_KEYS`: Number of keys to test
+- `USERS`: Number of concurrent users
+- `DURATION`: Test duration
 
-## Requisitos
+## Requirements
 
-- Siege: Ferramenta de benchmarking HTTP
-- Sistema em execução (todos os containers ativos)
+- Siege: HTTP benchmarking tool
+- System running (all containers active)
 
-## Interpretação dos Resultados
+## Interpreting Results
 
-O script gera relatórios contendo as seguintes métricas:
+The script generates reports containing the following metrics:
 
-- Throughput (transações por segundo)
-- Tempo médio de resposta
-- Taxa de disponibilidade
-- Concorrência média
-- Número de transações bem-sucedidas e falhas
+- Throughput (transactions per second)
+- Average response time
+- Availability rate
+- Average concurrency
+- Number of successful and failed transactions
 
-Consulte `README-load-tests.md` para mais detalhes sobre a interpretação dos resultados e resolução de problemas comuns. 
+See the main [TESTING.md](../TESTING.md) for more details on result interpretation and troubleshooting common issues.

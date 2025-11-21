@@ -1,30 +1,30 @@
-# API Principal (FastAPI)
+# Main API (FastAPI)
 
-Este diretório contém a implementação da API REST que serve como ponto de entrada principal do sistema de armazenamento chave-valor.
+This directory contains the REST API implementation that serves as the main entry point for the key-value storage system.
 
-## Estrutura
+## Structure
 
-- `main.py`: Definição da aplicação FastAPI e endpoints da API
-- `cache.py`: Interface com o Redis para caching
-- `mq.py`: Cliente para o RabbitMQ para mensageria
-- `metrics.py`: Instrumentação para métricas do Prometheus
-- `health_check.py`: Implementação dos health checks
-- `storage/`: Adaptadores para diferentes backends de armazenamento
+- `main.py`: FastAPI application definition and API endpoints
+- `cache.py`: Redis interface for caching
+- `mq.py`: RabbitMQ client for messaging
+- `metrics.py`: Prometheus metrics instrumentation
+- `health_check.py`: Health checks implementation
+- `storage/`: Adapters for different storage backends
 
-## Funcionalidades
+## Features
 
-- Endpoints REST para operações PUT, GET e DELETE
-- Cache de dados usando Redis
-- Publicação de eventos para processamento assíncrono
-- Monitoramento via métricas Prometheus
-- Health checks para integração com orquestradores
+- REST endpoints for PUT, GET, and DELETE operations
+- Data caching using Redis
+- Event publishing for asynchronous processing
+- Monitoring via Prometheus metrics
+- Health checks for orchestrator integration
 
-## Dependências
+## Dependencies
 
-As dependências estão listadas no arquivo `requirements.txt` e incluem:
-- FastAPI: Framework web
-- uvicorn: Servidor ASGI
-- Redis: Cliente para cache
-- pika: Cliente para RabbitMQ
-- prometheus-client: Cliente para métricas
-- psycopg: Cliente para CockroachDB 
+Dependencies are listed in the `requirements.txt` file and include:
+- FastAPI: Web framework
+- uvicorn: ASGI server
+- Redis: Cache client
+- pika: RabbitMQ client
+- prometheus-client: Metrics client
+- psycopg: CockroachDB client
